@@ -9,6 +9,8 @@ namespace PawsNdv.Domain.Interfaces
 {
     public interface IUnitOfWork
     {
+
+        IOwnerRepository Owners { get; }
         IGenericRepository<Person> Persons {  get; }
 
         IGenericRepository<Pet> Pets { get; }

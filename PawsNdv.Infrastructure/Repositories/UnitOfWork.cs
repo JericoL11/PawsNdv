@@ -9,14 +9,17 @@ namespace PawsNdv.Infrastructure.Repositories
     {
         private readonly PawsNdvContext _context;
 
+
         public UnitOfWork(PawsNdvContext context)
         {
             this._context = context;
 
             Persons = new GenericRepository<Person>(_context);
-            //follow the from chatgpt
+            Owners = new OwnerRepository(_context);
 
         }
+
+        public IOwnerRepository Owners { get; private set; }
         public IGenericRepository<Person> Persons { get; private set; }
 
         public IGenericRepository<Pet> Pets { get; private set; }

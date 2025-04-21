@@ -27,8 +27,8 @@ namespace Paws.Application.Mappings
 
             // Owner
             CreateMap<Owner, OwnerCreateDto>()
-                .ForMember(dest => dest.Person, opt => opt.MapFrom(src => src.Person))
-                .ForMember(dest => dest.Pets, opt => opt.MapFrom(src => src.IPet))
+                .ForMember(dest => dest.Person, opt => opt.MapFrom(src => src.Person))  //dest (from dto) -> src.person(entity navigation)
+                .ForMember(dest => dest.Pets, opt => opt.MapFrom(src => src.IPet))  //Maps the IPet collection from the Owner entity to the Pets collection in your DTO.
                 .ReverseMap();
 
             CreateMap<Owner, OwnerUpdateDto>()
@@ -38,7 +38,7 @@ namespace Paws.Application.Mappings
 
             CreateMap<Owner, OwnerDisplayDto>()
                 .ForMember(dest => dest.Person, opt => opt.MapFrom(src => src.Person))
-                .ForMember(dest => dest.Pets, opt => opt.MapFrom(src => src.IPet))
+                //.ForMember(dest => dest.Pets, opt => opt.MapFrom(src => src.IPet))
                 .ReverseMap();
         }
 

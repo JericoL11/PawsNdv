@@ -31,14 +31,9 @@ namespace Paws.Application.DTOs
 
     public class OwnerDisplayDto
     {
-        public int Id { get; set; }
-
-        public DateTime CreatedAt { get; set; }
-        public DateTime UpdatedAt { get; set; }
-
         public PersonDisplayDto Person { get; set; } = new();
 
-        public List<PetDisplayDto>? Pets { get; set; }
+ 
     }
 
 }

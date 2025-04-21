@@ -1,20 +1,16 @@
-﻿using PawsNdv.Domain.Enums;
+﻿using Paws.Application.DTOs;
+using PawsNdv.Domain.Enums;
 
 namespace Paws.Application.Interfaces
 {
-    public class IOwnerService
+    //dto is for front end
+    public interface IOwnerService
     {
-      
-        public string? FirstName { get; set; }
-
-        public string? LastName { get; set; }
-
-    
-        public string? MiddleName { get; set; }
-
-        public Gender Gender { get; set; }
-
-     
-        public DateTime BirthDate { get; set; }
+        Task<IEnumerable<OwnerDisplayDto>> GetAllOwnerAsync();
+        Task<OwnerDisplayDto?> GetByIdAsync(int id);
+        Task<OwnerDisplayDto?> CreateOwnerAsync(OwnerCreateDto dto);
+        Task<bool> UpdateOwnerAsync(int id, OwnerUpdateDto dto);
+        Task<bool> DeleteOwnerAsync(int id);
     }
+
 }

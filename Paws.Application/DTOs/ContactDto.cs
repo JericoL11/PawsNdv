@@ -23,11 +23,11 @@ namespace Paws.Application.DTOs
         public string HomeAddress { get; set; } = string.Empty;
     }
 
-    public class ContactUpdateDto : ContactCreateDto { }
+    public class ContactUpdateDto : ContactCreateDto { } //inherit the contact CreateDto
 
     public class ContactDisplayDto
     {
-        public int Id { get; set; }
+  
         public string? PhoneNumber { get; set; }
         public string? Email { get; set; }
         public string HomeAddress { get; set; } = string.Empty;

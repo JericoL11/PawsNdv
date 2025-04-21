@@ -1,5 +1,7 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using Paws.Application.Interfaces;
+using Paws.Application.Services;
 using PawsNdv.Domain.Interfaces;
 using PawsNdv.Infrastructure.Data;
 using PawsNdv.Infrastructure.Repositories;
@@ -16,6 +18,7 @@ builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
 // 🎯 AutoMapper, FluentValidation, etc. (optional)
 builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
+builder.Services.AddScoped<IOwnerService, OwnerService>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

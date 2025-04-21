@@ -31,12 +31,14 @@ namespace Paws.Application.DTOs
         public List<ContactCreateDto>? Contacts { get; set; }
     }
 
-    public class PersonUpdateDto : PersonCreateDto { }
+    public class PersonUpdateDto : PersonCreateDto //INHERIT
+    {
+        public int Id { get; set; }
+    }
 
     public class PersonDisplayDto
     {
-        public int Id { get; set; }
-
+     
         public string FullName => $"{FirstName} {MiddleName} {LastName}".Trim();
 
         public string FirstName { get; set; } = string.Empty;

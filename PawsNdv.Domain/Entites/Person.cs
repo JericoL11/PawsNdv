@@ -30,6 +30,8 @@ namespace PawsNdv.Domain.Entites
         [Required]
         public DateTime BirthDate { get; set; }
 
+
+        //navigations
         public ICollection<Contact>? IContacts { get; set; }
 
         public Owner? Owner { get; set; }
