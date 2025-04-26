@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PawsNdv.Infrastructure.Data;
 
@@ -11,9 +12,11 @@ using PawsNdv.Infrastructure.Data;
 namespace PawsNdv.Infrastructure.Migrations
 {
     [DbContext(typeof(PawsNdvContext))]
-    partial class PawsNdvContextModelSnapshot : ModelSnapshot
+    [Migration("20250422072707_AlterPersonTbl")]
+    partial class AlterPersonTbl
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

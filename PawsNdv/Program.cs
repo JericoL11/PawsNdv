@@ -21,6 +21,20 @@ builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 builder.Services.AddScoped<IOwnerService, OwnerService>();
 
 builder.Services.AddControllers();
+
+
+//Importtant for angular connection
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowAngularFrontEnd", policy =>
+    {
+        policy.WithOrigins("http://localhost:4200")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
@@ -36,6 +50,11 @@ if (app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
+//impolrtant =>>>> head
+app.UseRouting(); // Add this line for enabling routing middleware
+
+app.UseCors("AllowAngularFrontEnd"); // Must come after UseRouting and before UseAuthorization
+// <=== Tail
 app.UseAuthorization();
 
 app.MapControllers();

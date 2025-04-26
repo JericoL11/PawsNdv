@@ -18,9 +18,9 @@ namespace PawsNdv.Controllers
         }
 
         [HttpGet]
-        public async Task <ActionResult<IEnumerable<OwnerDisplayDto>>> GetOwner()
+        public async Task <ActionResult<IEnumerable<OwnerDisplayDto>>> GetOwnerList(string? search, int pageNo, int pageSize)
         {
-            var owners = await _ownerService.GetAllOwnerAsync();
+            var owners = await _ownerService.GetAllAsync(search,pageNo,pageSize);
 
             return Ok(owners);
         }
@@ -28,11 +28,14 @@ namespace PawsNdv.Controllers
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] OwnerCreateDto ownerCreateDto)
         {
-            if (!ModelState.IsValid) return BadRequest(ModelState);
+            if (ownerCreateDto == null)
+            {
+                return BadRequest("Invalid Data");
+            }
             
             var createOwner = await _ownerService.CreateOwnerAsync(ownerCreateDto);
 
-            return CreatedAtAction(nameof(GetOwner), createOwner); //update the table
+            return CreatedAtAction(nameof(GetOwnerList), createOwner); //update the table
         }
     }
 }

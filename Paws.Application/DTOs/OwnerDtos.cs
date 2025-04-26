@@ -9,11 +9,12 @@ namespace Paws.Application.DTOs
 {
     internal class OwnerDtos
     {
-    }
+    }      
+
+
 
     public class OwnerCreateDto
     {
-        [Required]
         public PersonCreateDto Person { get; set; } = new();
 
         public List<PetCreateDto>? Pets { get; set; }
@@ -24,6 +25,7 @@ namespace Paws.Application.DTOs
         [Required]
         public int Id { get; set; }
 
+        public DateTime UpdateAt { get; set; } = DateTime.UtcNow;
         public PersonUpdateDto Person { get; set; } = new();
 
         public List<PetUpdateDto>? Pets { get; set; }
@@ -31,6 +33,7 @@ namespace Paws.Application.DTOs
 
     public class OwnerDisplayDto
     {
+        public int Id { get; set; }
         public PersonDisplayDto Person { get; set; } = new();
 
  

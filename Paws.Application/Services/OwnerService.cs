@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Paws.Application.DTOs;
+using Paws.Application.Helpers;
 using Paws.Application.Interfaces;
 using PawsNdv.Domain.Entites;
 using PawsNdv.Domain.Interfaces;
@@ -17,11 +18,11 @@ namespace Paws.Application.Services
             this._mapper = mapper;
         }
 
-
-        public async Task<IEnumerable<OwnerDisplayDto>> GetAllOwnerAsync()
+        public async Task<PagedResponse<OwnerDisplayDto>> GetAllAsync( string? search, int pageNo, int pageSize)
         {
-            var owner = await _uow.Owners.GetAllAsync();
-            return _mapper.Map<IEnumerable<OwnerDisplayDto>>(owner);
+            var (owner, totalCount) = await _uow.Owners.GetAllOwnersAsync(search,pageNo,pageSize); //get the method
+            var ownersDto =  _mapper.Map<IEnumerable<OwnerDisplayDto>>(owner);  //mapped
+            return new PagedResponse<OwnerDisplayDto>(ownersDto, totalCount); //return to frontend
         }
         public async Task<OwnerDisplayDto?> CreateOwnerAsync(OwnerCreateDto ownerCreateDto)
         {

@@ -28,8 +28,6 @@ namespace Paws.Application.DTOs
         [Required]
         public Specie Specie { get; set; }
 
-        [Required]
-        public int OwnerId { get; set; }
     }
 
     public class PetUpdateDto : PetCreateDto { }

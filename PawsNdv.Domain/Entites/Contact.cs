@@ -15,10 +15,6 @@ namespace PawsNdv.Domain.Entites
         [Phone, MaxLength(11)]
         public string? PhoneNumber { get; set; } = string.Empty;
 
-        [EmailAddress, StringLength(100)]
-        public string? Email { get; set; }
-
-        [Required, StringLength(200)]
-        public string? HomeAddress { get; set; }
+     
     }
 }

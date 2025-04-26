@@ -31,6 +31,12 @@ namespace PawsNdv.Domain.Entites
         public DateTime BirthDate { get; set; }
 
 
+        [EmailAddress, StringLength(100)]
+        public string? Email { get; set; }
+
+        [Required, StringLength(200)]
+        public string? HomeAddress { get; set; }
+
         //navigations
         public ICollection<Contact>? IContacts { get; set; }
 
