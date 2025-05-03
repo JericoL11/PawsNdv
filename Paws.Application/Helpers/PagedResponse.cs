@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Paws.Application.Helpers
 {
 
-    //wrapper for page response
+    //wrapper for page response | mainly used for filtering
     public class PagedResponse<T>
     {
         public IEnumerable<T> Data { get; set; } = new List<T>();

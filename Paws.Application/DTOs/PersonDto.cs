@@ -48,7 +48,6 @@ namespace Paws.Application.DTOs
     {
      
         public string FullName => $"{FirstName} {MiddleName} {LastName}".Trim();
-
         public string FirstName { get; set; } = string.Empty;
         public string LastName { get; set; } = string.Empty;
         public string? MiddleName { get; set; }

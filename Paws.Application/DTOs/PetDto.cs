@@ -34,7 +34,7 @@ namespace Paws.Application.DTOs
 
     public class PetDisplayDto
     {
-        public int Id { get; set; }
+        public int PetId { get; set; }
         public string Name { get; set; } = string.Empty;
         public string Breed { get; set; } = string.Empty;
         public DateTime BirthDate { get; set; }

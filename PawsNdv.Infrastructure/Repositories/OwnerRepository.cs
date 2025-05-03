@@ -3,7 +3,6 @@ using PawsNdv.Domain.Entites;
 using PawsNdv.Domain.Interfaces;
 using PawsNdv.Infrastructure.Data;
 
-
 namespace PawsNdv.Infrastructure.Repositories
 {
     public class OwnerRepository : GenericRepository<Owner>, IOwnerRepository
@@ -14,14 +13,20 @@ namespace PawsNdv.Infrastructure.Repositories
         {
             this._context = context;
         }
-
-
-        public async Task<Owner?> GestOwnerWithPetsAsync(int id)
+        public async Task<Owner?> GetOwnerWithPetsAsync(int id)
         {
-            return await _context.Owners
+           var owner = await _context.Owners
              .Include(o => o.IPet)
              .Include(o => o.Person)
+                .ThenInclude(p => p.IContacts)
              .FirstOrDefaultAsync(o => o.Id == id);
+
+            if (owner == null)
+            {
+                return null;
+            }
+
+            return owner;
         }
 
         public async Task<(IEnumerable<Owner>? Owners, int TotalCount)> GetAllOwnersAsync(string? search, int pageNo, int pageSize)
@@ -38,7 +43,6 @@ namespace PawsNdv.Infrastructure.Repositories
                 query = query.Where(o => o.Person.FirstName.Contains(search) || o.Person.LastName.Contains(search));
             }
 
-
             var totalCount = await query.CountAsync();
 
             var owners = await query
@@ -46,10 +50,8 @@ namespace PawsNdv.Infrastructure.Repositories
                 .Take(pageSize)
                 .ToListAsync();
 
-
             return (owners, totalCount);
 
-            //ai na
         }
     }
 }

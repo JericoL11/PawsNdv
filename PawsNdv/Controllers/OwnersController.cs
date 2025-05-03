@@ -10,8 +10,6 @@ namespace PawsNdv.Controllers
     public class OwnersController : ControllerBase
     {
         private readonly IOwnerService _ownerService;
-
-      
         public OwnersController( IOwnerService ownerService)
         {
             this._ownerService = ownerService;
@@ -23,6 +21,22 @@ namespace PawsNdv.Controllers
             var owners = await _ownerService.GetAllAsync(search,pageNo,pageSize);
 
             return Ok(owners);
+        }
+
+
+        [HttpGet("{id}")]
+
+        public async Task<IActionResult> GetOwnerById(int id)
+        {
+            var ownerProfile = await _ownerService.GetByIdAsync(id);
+
+            if (ownerProfile == null)
+            {
+                return NotFound(new { message = $"Owner with ID {id} not found." });
+            }
+
+            return Ok(ownerProfile);
+
         }
 
         [HttpPost]

@@ -10,7 +10,7 @@ namespace PawsNdv.Domain.Interfaces
     public interface IOwnerRepository : IGenericRepository<Owner>
     {
         Task<(IEnumerable<Owner>? Owners, int TotalCount)> GetAllOwnersAsync( string? search, int pageNo, int pageSize);
-        Task<Owner?> GestOwnerWithPetsAsync(int id);
+        Task<Owner?> GetOwnerWithPetsAsync(int id);
 
     }
 }

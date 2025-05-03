@@ -18,12 +18,15 @@ namespace Paws.Application.Services
             this._mapper = mapper;
         }
 
+
         public async Task<PagedResponse<OwnerDisplayDto>> GetAllAsync( string? search, int pageNo, int pageSize)
         {
             var (owner, totalCount) = await _uow.Owners.GetAllOwnersAsync(search,pageNo,pageSize); //get the method
             var ownersDto =  _mapper.Map<IEnumerable<OwnerDisplayDto>>(owner);  //mapped
             return new PagedResponse<OwnerDisplayDto>(ownersDto, totalCount); //return to frontend
         }
+
+
         public async Task<OwnerDisplayDto?> CreateOwnerAsync(OwnerCreateDto ownerCreateDto)
         {
             //map nested Person
@@ -45,6 +48,7 @@ namespace Paws.Application.Services
             return _mapper.Map<OwnerDisplayDto?>(owner);
         }
 
+
         public Task<bool> DeleteOwnerAsync(int id)
         {
             throw new NotImplementedException();
@@ -52,9 +56,17 @@ namespace Paws.Application.Services
 
       
 
-        public Task<OwnerDisplayDto?> GetByIdAsync(int id)
+        public async Task<OwnerProfileDto?> GetByIdAsync(int id)
         {
-            throw new NotImplementedException();
+            var owner = await _uow.Owners.GetOwnerWithPetsAsync(id);
+
+            if (owner == null)
+            {
+                return null;
+            }
+            return _mapper.Map<OwnerProfileDto?>(owner);
+
+
         }
 
         public Task<bool> UpdateOwnerAsync(int id, OwnerUpdateDto dto)
