@@ -38,7 +38,7 @@ namespace Paws.Application.Services
                 Person = person,  // // 👈 create the person automatically
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
-                IPet = _mapper.Map<ICollection<Pet>>(ownerCreateDto.Pets)
+                IPet = _mapper.Map<ICollection<Pet>>(ownerCreateDto.IPet)
                 
             };
 
@@ -65,7 +65,6 @@ namespace Paws.Application.Services
                 return null;
             }
             return _mapper.Map<OwnerProfileDto?>(owner);
-
 
         }
 

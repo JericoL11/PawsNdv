@@ -8,10 +8,7 @@ using System.Threading.Tasks;
 
 namespace Paws.Application.DTOs
 {
-    internal class PetDto
-    {
-    }
-    public class PetCreateDto
+    public class PetBaseDto
     {
         [Required, StringLength(50)]
         public string Name { get; set; } = string.Empty;
@@ -27,20 +24,20 @@ namespace Paws.Application.DTOs
 
         [Required]
         public Specie Specie { get; set; }
+    }
+    public class PetCreateDto : PetBaseDto
+    {
 
     }
 
-    public class PetUpdateDto : PetCreateDto { }
-
-    public class PetDisplayDto
+    public class PetUpdateDto : PetBaseDto 
     {
-        public int PetId { get; set; }
-        public string Name { get; set; } = string.Empty;
-        public string Breed { get; set; } = string.Empty;
-        public DateTime BirthDate { get; set; }
-        public Gender Gender { get; set; }
-        public Specie Specie { get; set; }
 
+    }
+
+    public class PetDisplayDto : PetBaseDto
+    {
+        public int Id { get; set; }
         public int OwnerId { get; set; }
     }
 

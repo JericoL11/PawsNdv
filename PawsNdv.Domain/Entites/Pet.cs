@@ -30,6 +30,6 @@ namespace PawsNdv.Domain.Entites
         public Specie Specie { get; set; }
 
         [ForeignKey("Owner")]
-        public int ownerId { get; set; }
+        public int OwnerId { get; set; }
     }
 }

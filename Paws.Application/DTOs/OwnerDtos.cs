@@ -11,13 +11,11 @@ namespace Paws.Application.DTOs
     {
     }      
 
-
-
     public class OwnerCreateDto
     {
         public PersonCreateDto Person { get; set; } = new();
 
-        public List<PetCreateDto>? Pets { get; set; }
+        public List<PetCreateDto>? IPet { get; set; }
     }
 
     public class OwnerUpdateDto
@@ -28,7 +26,6 @@ namespace Paws.Application.DTOs
         public DateTime UpdateAt { get; set; } = DateTime.UtcNow;
         public PersonUpdateDto Person { get; set; } = new();
 
-        public List<PetUpdateDto>? Pets { get; set; }
     }
 
     public class OwnerDisplayDto
@@ -38,7 +35,7 @@ namespace Paws.Application.DTOs
     }
 
     public class OwnerProfileDto { 
-        public int OwnerId { get; set; }
+        public int Id { get; set; }
         public DateTime UpdatedAt { get; set; }
         public PersonDisplayDto Person { get; set; } = new();
         public ICollection<PetDisplayDto> Pets { get; set; }
