@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+
 
 namespace Paws.Application.DTOs
 {
@@ -15,17 +12,13 @@ namespace Paws.Application.DTOs
     {
         public PersonCreateDto Person { get; set; } = new();
 
-        public List<PetCreateDto>? IPet { get; set; }
+        public List<PetCreateDto>? Pets { get; set; }
     }
 
     public class OwnerUpdateDto
     {
-        [Required]
-        public int Id { get; set; }
-
-        public DateTime UpdateAt { get; set; } = DateTime.UtcNow;
-        public PersonUpdateDto Person { get; set; } = new();
-
+        public PersonUpdateDto? Person { get; set; } = new();
+        public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
 
     public class OwnerDisplayDto

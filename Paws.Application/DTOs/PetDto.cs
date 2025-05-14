@@ -10,19 +10,19 @@ namespace Paws.Application.DTOs
 {
     public class PetBaseDto
     {
-        [Required, StringLength(50)]
+        [StringLength(50)]
         public string Name { get; set; } = string.Empty;
 
-        [Required]
+     
         public string Breed { get; set; } = string.Empty;
 
-        [Required]
+        
         public DateTime BirthDate { get; set; }
 
-        [Required]
+      
         public Gender Gender { get; set; }
 
-        [Required]
+    
         public Specie Specie { get; set; }
     }
     public class PetCreateDto : PetBaseDto
@@ -42,3 +42,4 @@ namespace Paws.Application.DTOs
     }
 
 }
+ 

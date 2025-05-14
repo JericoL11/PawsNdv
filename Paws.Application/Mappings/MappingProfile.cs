@@ -38,6 +38,7 @@ namespace Paws.Application.Mappings
 
             // Owner
             CreateMap<Owner, OwnerCreateDto>()
+                .ForMember(dest => dest.Pets, opt => opt.MapFrom(src => src.IPet))
                 .ReverseMap();
 
             CreateMap<Owner, OwnerUpdateDto>()

@@ -8,7 +8,9 @@ namespace PawsNdv.Domain.Enums
 {
     public enum Gender
     {
-        Male,
-        Female
+        Unknown = 0,  // default, considered invalid
+        Male = 1,
+        Female = 2
     }
+
 }

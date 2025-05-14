@@ -10,34 +10,34 @@ namespace Paws.Application.DTOs
 {
     public abstract class PersonBaseDto
     {
-        [Required, StringLength(50)]
+
         public string FirstName { get; set; } = string.Empty;
 
-        [Required, StringLength(50)]
+     
         public string LastName { get; set; } = string.Empty;
 
-        [StringLength(50)]
+
         public string? MiddleName { get; set; }
 
-        [Required]
+
         public Gender Gender { get; set; }
 
-        [Required]
+
         public DateTime BirthDate { get; set; }
 
-        [EmailAddress, StringLength(100)]
+      
         public string? Email { get; set; }
 
-        [Required, StringLength(200)]
         public string? HomeAddress { get; set; }
     }
 
     public class PersonCreateDto : PersonBaseDto
     {
+
         public List<ContactCreateDto>? Contacts { get; set; }
     }
 
-    public class PersonUpdateDto : PersonBaseDto //INHERIT
+    public class PersonUpdateDto : PersonCreateDto //INHERIT
     {
         public List<ContactUpdateDto>? Contacts { get; set; }
     }
