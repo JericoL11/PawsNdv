@@ -5,12 +5,14 @@ namespace Paws.Application.Helpers
     public  static class ValidationHelper
     {
         //helper for validation handler
-        public static async Task EnsureValid<T>(this IValidator<T> validator, T dto)
+        public static async Task EnsureValid<T>(T dto, IValidator<T> validator)
         {
             var result = await validator.ValidateAsync(dto);
             if (!result.IsValid)
             {
-                throw new ValidationException(result.Errors);
+                var errors = result.Errors.Select(e => $"{e.PropertyName}: {e.ErrorMessage}");
+                throw new ValidationException("\n" + string.Join("\n", errors));
+
             }
         }
     }

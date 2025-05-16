@@ -22,8 +22,9 @@ namespace Paws.Application.Validators
     {
         public OwnerUpdateValidator()
         {
-            RuleFor(X => X.Person)
-                .SetValidator(new PersonCreateValidator());
+            RuleFor(x => x.Person)
+               .SetValidator(new PersonUpdateValidator());
+         
         }
     }
  }

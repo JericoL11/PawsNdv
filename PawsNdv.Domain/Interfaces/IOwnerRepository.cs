@@ -12,5 +12,7 @@ namespace PawsNdv.Domain.Interfaces
         Task<(IEnumerable<Owner>? Owners, int TotalCount)> GetAllOwnersAsync( string? search, int pageNo, int pageSize);
         Task<Owner?> GetOwnerWithPetsAsync(int id);
 
+        Task<Owner> GetOwnerById(int id);
+
     }
 }

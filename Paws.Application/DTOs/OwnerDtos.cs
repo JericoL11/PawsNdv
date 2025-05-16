@@ -17,7 +17,7 @@ namespace Paws.Application.DTOs
 
     public class OwnerUpdateDto
     {
-        public PersonUpdateDto? Person { get; set; } = new();
+        public PersonUpdateDto Person { get; set; } = new();
         public DateTime UpdatedAt { get; set; } = DateTime.UtcNow;
     }
 

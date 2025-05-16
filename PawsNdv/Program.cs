@@ -24,11 +24,12 @@ builder.Services.AddScoped<IOwnerService, OwnerService>();
 
 // ✅ FluentValidation 
 //will read all the validations bcs of FluentValidation.DependencyInjectionExtensions
-builder.Services.AddValidatorsFromAssemblyContaining<PersonCreateValidator>();
-
+//builder.Services.AddValidatorsFromAssemblyContaining<OwnerCreateValidator>();
 
 // 🌐 Controllers
 builder.Services.AddControllers();
+
+
 
 // 🌍 CORS for Angular frontend
 builder.Services.AddCors(options =>
@@ -62,21 +63,21 @@ app.UseCors("AllowAngularFrontEnd"); // 🔐 Enable CORS for Angular
 
 
 // 🔍 Global FluentValidation error handler
-app.Use(async (context, next) =>
-{
-    try
-    {
-        await next();
-    }
-    catch (ValidationException ex)
-    {
-        context.Response.StatusCode = 400;
-        await context.Response.WriteAsJsonAsync(new
-        {
-            Errors = ex.Errors.Select(e => e.ErrorMessage)
-        });
-    }
-});
+//app.Use(async (context, next) =>
+//{
+//    try
+//    {
+//        await next();
+//    }
+//    catch (ValidationException ex)
+//    {
+//        context.Response.StatusCode = 400;
+//        await context.Response.WriteAsJsonAsync(new
+//        {
+//            Errors = ex.Errors.Select(e => e.ErrorMessage)
+//        });
+//    }
+//});
 
 
 app.UseAuthorization();

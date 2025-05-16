@@ -37,7 +37,7 @@ namespace Paws.Application.DTOs
         public List<ContactCreateDto>? Contacts { get; set; }
     }
 
-    public class PersonUpdateDto : PersonCreateDto //INHERIT
+    public class PersonUpdateDto : PersonBaseDto //INHERIT
     {
         public List<ContactUpdateDto>? Contacts { get; set; }
     }

@@ -53,5 +53,20 @@ namespace PawsNdv.Infrastructure.Repositories
             return (owners, totalCount);
 
         }
+
+        public async Task<Owner> GetOwnerById(int id)
+        {
+            var owner = await _context.Owners
+                .Include(o => o.Person)
+                .ThenInclude(p => p.IContacts)
+                .FirstOrDefaultAsync( o => o.Id == id);
+
+            if (owner is null)
+            {
+                return null;
+            }
+
+            return owner;
+        }
     }
 }

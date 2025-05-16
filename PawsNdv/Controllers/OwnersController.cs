@@ -41,7 +41,7 @@ namespace PawsNdv.Controllers
 
         [HttpPost]
         public async Task<ActionResult> Create([FromBody] OwnerCreateDto ownerCreateDto)
-        {
+        {   
             if (ownerCreateDto == null)
             {
                 return BadRequest("Invalid Data");
@@ -50,6 +50,23 @@ namespace PawsNdv.Controllers
             var createOwner = await _ownerService.CreateOwnerAsync(ownerCreateDto);
 
             return CreatedAtAction(nameof(GetOwnerList), createOwner); //update the table
+        }
+
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<OwnerUpdateDto>> Edit(int id, OwnerUpdateDto ownerUpdateDto)
+        {
+            if (ownerUpdateDto == null)
+                return BadRequest("Owner data is required");
+
+            var updateOwner = await _ownerService.UpdateOwnerAsync(id, ownerUpdateDto);
+
+            if (updateOwner == null)
+            {
+                return NotFound($"Owner with {id} not found.");
+            }
+
+            return Ok(updateOwner);
         }
     }
 }

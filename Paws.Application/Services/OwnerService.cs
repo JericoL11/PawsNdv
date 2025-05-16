@@ -14,15 +14,11 @@ namespace Paws.Application.Services
     {
         private readonly IUnitOfWork _uow;
         private readonly IMapper _mapper;
-        private readonly IValidator<OwnerCreateDto> _createValidator;
-        private readonly IValidator<OwnerUpdateDto> _updateValidator;
-
-        public OwnerService(IUnitOfWork uow, IMapper mapper, IValidator<OwnerCreateDto> createValidator, IValidator<OwnerUpdateDto> updateValidator)
+    
+        public OwnerService(IUnitOfWork uow, IMapper mapper)
         {
             this._uow = uow;
             this._mapper = mapper;
-            _createValidator = createValidator;
-            _updateValidator = updateValidator;
         }
 
         public async Task<PagedResponse<OwnerDisplayDto>> GetAllAsync( string? search, int pageNo, int pageSize)
@@ -36,8 +32,7 @@ namespace Paws.Application.Services
         {
 
             // Validate the OwnerCreateDto using the injected validator
-             await _createValidator.EnsureValid(ownerCreateDto);
-
+            await ValidationHelper.EnsureValid(ownerCreateDto, new OwnerCreateValidator());
 
             //map nested Person
             var person = _mapper.Map<Person>(ownerCreateDto.Person);
@@ -80,12 +75,14 @@ namespace Paws.Application.Services
 
         public async Task<bool> UpdateOwnerAsync(int id, OwnerUpdateDto ownerDto)
         {
-             // validate to to helper validator
-             await _updateValidator.EnsureValid(ownerDto);
+            // validate to to helper validator
+            await ValidationHelper.EnsureValid(ownerDto, new OwnerUpdateValidator());
 
-           
+         
             // Get existing Owner
-            var owner = await _uow.Owners.GetByIdAsync(id);
+            var owner = await _uow.Owners.GetOwnerById(id);
+
+
             if (owner == null)
             {
                 return false;
